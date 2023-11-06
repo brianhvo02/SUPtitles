@@ -6,6 +6,7 @@
     "strict": true,
     "strictNullChecks": false,
     "target": "es6",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declaration": true
   }
 }

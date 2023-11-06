@@ -20,9 +20,9 @@ export default class SUPtitles {
   cv: HTMLCanvasElement[] = []
   canvasSizeSet = false
 
-  constructor(video: HTMLVideoElement, link: string) {
-    console.info('# SUP Starting')
+  private constructor(video: HTMLVideoElement, buffer: ArrayBuffer) {
     this.video = video
+    this.file = new Uint8Array(buffer)
 
     video.addEventListener('play', this.playHandler)
     video.addEventListener('pause', this.pauseHandler)
@@ -40,13 +40,18 @@ export default class SUPtitles {
     video.parentNode.appendChild(canvas)
 
     this.cv.push(canvas)
+    console.info('# SUP Ready')
 
-    fetch(link)
-      .then(response => response.arrayBuffer())
-      .then(buffer => {
-        this.file = new Uint8Array(buffer)
-        console.info('# SUP Ready')
-      })
+    if (!video.paused)
+      this.playHandler()
+  }
+
+  static async init(video: HTMLVideoElement, link: string) {
+    console.info('# SUP Starting')
+    const buffer = await fetch(link)
+      .then(response => response.arrayBuffer());
+
+    return new this(video, buffer);
   }
 
   playHandler = (): void => {

@@ -11,8 +11,8 @@
       ></video>
     </div>
     <script type="module">
-      import SUPtitles from './dist/index.js'
-      let sup = new SUPtitles(
+      import SUPtitles from '../dist/index.js'
+      let sup = await SUPtitles.init(
         document.getElementById('video'),
         './exampleSubtitle.sup'
       )
