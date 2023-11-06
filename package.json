@@ -1,11 +1,12 @@
 {
   "name": "suptitles",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Renders Blu-ray subtitles in the browser",
   "type": "module",
   "main": "./dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
-  "repository": "mathnuts/suptitles",
+  "repository": "brianhvo02/suptitles",
   "devDependencies": {
     "typescript": "^3.7.5"
   },
